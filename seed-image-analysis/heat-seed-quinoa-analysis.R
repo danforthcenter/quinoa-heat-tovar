@@ -1,4 +1,5 @@
 library(ggplot2)
+library(lsmeans)
 
 this.dir <- dirname(rstudioapi::getSourceEditorContext()$path)
 setwd(this.dir)
@@ -41,9 +42,17 @@ seed.merge$est.seed.weight.image<-seed.merge$sample_weight/as.numeric(seed.merge
 seed.merge$est.total.seeds<-NA
 seed.merge$est.total.seeds<-round((seed.merge$yield_g/seed.merge$est.seed.weight.image),0)
 
-# Graph
+# Graph Seed Area
+pdf(file="seed.area_round2.pdf",width = 8,height = 10,pointsize = 5,useDingbats = FALSE)
+ggplot(seed.merge, aes(x = treatment, y = as.numeric(avg.area), fill = treatment)) + geom_boxplot(aes(fill = treatment)) + 
+  geom_point(color="black", pch=21, size = 2, position=position_dodge(width = 0.6)) + 
+  theme_bw() + scale_x_discrete("Treatment") + 
+  scale_y_continuous("Normalized Area (seed pixels/size marker area)", limits = c(0, 0.1)) + 
+  theme(axis.text.x = element_text(size = 12, angle = 45, hjust = 1), axis.text.y = element_text(size = 12), axis.title = element_text(size = 13)) +
+  ggtitle("Quinoa Seed Area after Heat Exposure") + theme(plot.title = element_text(hjust = 0.5))
+dev.off()
 
-
-# Statistics
-
+#ANOVA comparisson
+area_mod <- glm(data = seed.merge, as.numeric(avg.area) ~ 0+treatment)
+pairs(lsmeans(area_mod, specs = "treatment"))
 
