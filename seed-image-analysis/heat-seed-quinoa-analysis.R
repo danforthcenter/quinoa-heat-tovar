@@ -56,3 +56,31 @@ dev.off()
 area_mod <- glm(data = seed.merge, as.numeric(avg.area) ~ 0+treatment)
 pairs(lsmeans(area_mod, specs = "treatment"))
 
+# Graph est seed number
+pdf(file="seed.number_round2.pdf",width = 8,height = 10,pointsize = 5,useDingbats = FALSE)
+ggplot(seed.merge, aes(x = treatment, y = as.numeric(est.total.seeds), fill = treatment)) + geom_boxplot(aes(fill = treatment)) + 
+  geom_point(color="black", pch=21, size = 2, position=position_dodge(width = 0.6)) + 
+  theme_bw() + scale_x_discrete("Treatment") + 
+  scale_y_continuous("Estimated Seed Number (yield(g)/estimated seed weight)", limits = c(0, 8000)) + 
+  theme(axis.text.x = element_text(size = 12, angle = 45, hjust = 1), axis.text.y = element_text(size = 12), axis.title = element_text(size = 13)) +
+  ggtitle("Quinoa Seed Number after Heat Exposure") + theme(plot.title = element_text(hjust = 0.5))
+dev.off()
+
+#ANOVA comparisson
+area_mod <- glm(data = seed.merge, as.numeric(est.total.seeds) ~ 0+treatment)
+pairs(lsmeans(area_mod, specs = "treatment"))
+
+# Graph est seed number
+pdf(file="seed.weight_round2.pdf",width = 8,height = 10,pointsize = 5,useDingbats = FALSE)
+ggplot(seed.merge, aes(x = treatment, y = as.numeric(est.seed.weight.image), fill = treatment)) + geom_boxplot(aes(fill = treatment)) + 
+  geom_point(color="black", pch=21, size = 2, position=position_dodge(width = 0.6)) + 
+  theme_bw() + scale_x_discrete("Treatment") + 
+  scale_y_continuous("Estimated Seed Weight (seed weight(g)/number seeds)", limits = c(0, 0.015)) + 
+  theme(axis.text.x = element_text(size = 12, angle = 45, hjust = 1), axis.text.y = element_text(size = 12), axis.title = element_text(size = 13)) +
+  ggtitle("Quinoa Seed Weight after Heat Exposure") + theme(plot.title = element_text(hjust = 0.5))
+dev.off()
+
+#ANOVA comparisson
+area_mod <- glm(data = seed.merge, as.numeric(est.seed.weight.image) ~ 0+treatment)
+pairs(lsmeans(area_mod, specs = "treatment"))
+
