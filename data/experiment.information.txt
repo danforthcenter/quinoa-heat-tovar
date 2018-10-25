@@ -1,0 +1,9 @@
+Sample.Code	Species	Treatment	Time.in.Heat	Tissue	Sampling.Time	Photoperiod	Light.Intensity	Relative.Humidity
+C1	Chenopodium quinoa	Control (22C)	1 Day	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HR1	Chenopodium quinoa	Heated Roots (30C)	1 Day	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HS1	Chenopodium quinoa	Heated Shoots (35C)	1 Day	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HRS1	Chenopodium quinoa	Heated Roots (30C) and Shoots (35C)	1 Day	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+C11	Chenopodium quinoa	Control (22C)	11 Days	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HR11	Chenopodium quinoa	Heated Roots (30C)	11 Days	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HS11	Chenopodium quinoa	Heated Shoots (35C)	11 Days	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
+HRS11	Chenopodium quinoa	Heated Roots (30C) and Shoots (35C)	11 Days	Leaf	ZTX	12H Day / 12 H Night	400 umol	60%
