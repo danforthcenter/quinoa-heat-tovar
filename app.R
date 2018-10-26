@@ -312,7 +312,7 @@ server<-function(input,output,session){
         quinoa.table6<-quinoa.table[quinoa.table$hr1_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table5<-quinoa.table6[quinoa.table6$hs1_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table4<-quinoa.table5[quinoa.table5$hrs1_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table3<-na.omit(quinoa.table4)
+        quinoa.table3<-quinoa.table4[rowSums(is.na(quinoa.table4)) != ncol(quinoa.table4), ]
         quinoa.table<-quinoa.table3
       }
     }
@@ -324,7 +324,7 @@ server<-function(input,output,session){
         quinoa.table6<-quinoa.table[quinoa.table$hr11_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table5<-quinoa.table6[quinoa.table6$hs11_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table4<-quinoa.table5[quinoa.table5$hrs11_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table3<-na.omit(quinoa.table4)
+        quinoa.table3<-quinoa.table4[rowSums(is.na(quinoa.table4)) != ncol(quinoa.table4), ]
         quinoa.table<-quinoa.table3
       }
     }
@@ -334,10 +334,10 @@ server<-function(input,output,session){
         quinoa.table6<-quinoa.table[quinoa.table$hr1_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table5<-quinoa.table6[quinoa.table6$hs1_qval<=as.numeric(input$bhq.cutoff1),]
         quinoa.table4<-quinoa.table5[quinoa.table5$hrs1_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table3<-quinoa.table4[quinoa.table4$hr1_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table2<-quinoa.table3[quinoa.table3$hs1_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table1<-quinoa.table2[quinoa.table2$hrs1_qval<=as.numeric(input$bhq.cutoff1),]
-        quinoa.table0<-na.omit(quinoa.table1)
+        quinoa.table3<-quinoa.table4[quinoa.table4$hr11_qval<=as.numeric(input$bhq.cutoff1),]
+        quinoa.table2<-quinoa.table3[quinoa.table3$hs11_qval<=as.numeric(input$bhq.cutoff1),]
+        quinoa.table1<-quinoa.table2[quinoa.table2$hrs11_qval<=as.numeric(input$bhq.cutoff1),]
+        quinoa.table0<-quinoa.table1[rowSums(is.na(quinoa.table1)) != ncol(quinoa.table1), ]
         quinoa.table<-quinoa.table0
       }
     }
@@ -349,7 +349,7 @@ server<-function(input,output,session){
         quinoa.table6<-quinoa.table[(quinoa.table$hr1_qval<=as.numeric(input$bhq.cutoff1) | 
                                        quinoa.table$hs1_qval<=as.numeric(input$bhq.cutoff1) |  
                                        quinoa.table$hrs1_qval<=as.numeric(input$bhq.cutoff1)),]
-        quinoa.table5<-na.omit(quinoa.table6)
+        quinoa.table5<-quinoa.table6[rowSums(is.na(quinoa.table6)) != ncol(quinoa.table6), ]
         quinoa.table<-quinoa.table5
       }
     }
@@ -361,7 +361,7 @@ server<-function(input,output,session){
         quinoa.table6<-quinoa.table[(quinoa.table$hr11_qval<=as.numeric(input$bhq.cutoff1) | 
                                        quinoa.table$hs11_qval<=as.numeric(input$bhq.cutoff1) |  
                                        quinoa.table$hrs11_qval<=as.numeric(input$bhq.cutoff1)),]
-        quinoa.table5<-na.omit(quinoa.table6)
+        quinoa.table5<-quinoa.table6[rowSums(is.na(quinoa.table6)) != ncol(quinoa.table6), ]
         quinoa.table<-quinoa.table5
       }
     }
@@ -374,7 +374,7 @@ server<-function(input,output,session){
                                        quinoa.table$hr11_qval<=as.numeric(input$bhq.cutoff1) | 
                                        quinoa.table$hs11_qval<=as.numeric(input$bhq.cutoff1) |  
                                        quinoa.table$hrs11_qval<=as.numeric(input$bhq.cutoff1)),]
-        quinoa.table5<-na.omit(quinoa.table6)
+        quinoa.table5<-quinoa.table6[rowSums(is.na(quinoa.table6)) != ncol(quinoa.table6), ]
         quinoa.table<-quinoa.table5
       }
     }
@@ -408,8 +408,6 @@ server<-function(input,output,session){
     quinoa.plot<-subset(quinoa.plot1,select=-c(target_id, best_hit_arabidopsis))
     quinoa.plot<-quinoa.plot[, grepl( "_de" , names(quinoa.plot ) )]
     rownames(quinoa.plot)<-quinoa.plot1$target_id
-    print(quinoa.plot)
-    str(quinoa.plot)
     return(quinoa.plot)
     })
   
